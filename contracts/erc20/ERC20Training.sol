@@ -14,10 +14,10 @@ contract ERC20Training is IERC20, IERC20Errors {
     mapping(address owner => uint256) private balances;
     mapping(address owner => mapping(address spender => uint256)) private _allowance;
 
-    constructor(string memory name_, string memory symbol_) {
+    constructor(string memory name_, string memory symbol_, uint256 totalSupply_) {
         _name = name_;
         _symbol = symbol_;
-        _mint(address(0), 50 * 10 ** decimals());
+        _mint(msg.sender, totalSupply_);
     }
 
     function name() public view virtual returns (string memory) {
